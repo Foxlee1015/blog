@@ -91,10 +91,12 @@ tags: [github, ruby, jekyll]
 1. gem 을 이용해 패키지 설치 시 내가 선택한 테마는 내가 참고한 블로그 만들기 사이트에서 선택한 테마와 달라 해당 지킬 테마에서 사용한 플러그인이 다르기 때문에 지킬 피키지들을 더 설치해야 했음
 2. 처음 로컬에서 지킬 웹 페이지를 실행했을때 css, imges 들을 import를 못했는데 baseurl 설정을 잘못했었음
 
-
+## 기타
+* 마크다운 작성법이 궁금하다면 [여기를][markdown] 확인해보세요. 
 
 
 [Github]: https://github.com/
 [Jekyll-themes]: http://jekyllthemes.org/
 [Ruby]: https://rubyinstaller.org/downloads/
 [Ruby-install]: https://shryu8902.github.io/_posts/2018-06-22-jekyll-on-windows/
+[markdown]: https://gist.github.com/ihoneymon/652be052a0727ad59601
