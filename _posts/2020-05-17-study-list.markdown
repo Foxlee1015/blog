@@ -36,6 +36,9 @@ tags: [study]
 
 ## 진행 중
 
+* CICD
+    1. GIT Actions
+
 
 ## 진행 후
 
