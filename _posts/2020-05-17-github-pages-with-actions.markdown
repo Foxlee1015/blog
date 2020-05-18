@@ -11,11 +11,11 @@ tags: [react, github, ci/cd]
 1. cra 로 리액트 앱 생성
 2. 깃헙 배포용 패키지 설치
 3. package.json 환경설정
-4. 깃험 레포에 푸쉬
+4. 깃험 레포에 푸쉬 및 환경 설정
 5. workflows 환경 설정
 
 
-## cra 로 리액트 앱 생성, 패키지 설치
+## 1. cra 로 리액트 앱 생성 2. 깃헙 패키지 설치
 
 {% highlight ruby %}
 > $ npx create-react-app react-github
@@ -36,4 +36,7 @@ tags: [react, github, ci/cd]
 {% endhighlight %}
 
 
-## 배포하기 
+## 깃헙 환경 설정
+
+
+## 
