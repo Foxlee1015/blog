@@ -48,7 +48,7 @@ npm run deploy
 1. git actions 환경 설정 파일 추가
 * .github/workflows/deploy.yml   
 
-![deploy.yml]({{site.baseurl}}/assets/img/github_deploy_yml.jpg)
+![deploy.yml]({{site.baseurl}}/assets/img/github_deploy_yml.JPG)
 
 --> 깃에 올리면 바로 action 에서 바로 진행시작함(밑에 설정해줘야 하는 것들이 필요하므로 에러뜸)
 --> ##[error]Action failed with "not found deploy key or tokens" ssh 키 설정 필요
@@ -79,7 +79,6 @@ b3BlbnNzaCasdfasdsdfasdfasdfasdff
 -----END OPENSSH PRIVATE KEY-----
 {% endhighlight %}
 * value -> cat ~/.ssh/gh-pages-actions  = private key 보는 방법(--- 처음부터 --- 끝까지 다 넣어야함)
-
 
 
 [github]:https://github.com/
