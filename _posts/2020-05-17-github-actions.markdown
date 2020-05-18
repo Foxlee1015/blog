@@ -43,7 +43,9 @@ npm run deploy
 
 
 # 자동배포 적용
-* 위의 경우 npm run deploy를 하면 gh-pages 브랜치에 build 된 파일들이 올라가고 그 다음 개발 브랜치에 push 를 하는데 github actions 을 통해 해당 브랜츠에 push 하면 배포하도록 설정
+* 위의 경우 npm run deploy를 하면 gh-pages 브랜치에 build 된 파일들이 올라가고 그 다음 개발 브랜치에 push 를 하는데 github actions 을 통해 해당 브랜치에 push 하면 자동으로 깃험 페이지에 배포(빌드 파일 푸시)하도록 설정
+* npm install -D gh-pages 생략 가능
+* "predeploy" : "npm run build", "deploy" : "gh-pages -d build" 넣지 않아도 된다.
 
 1. git actions 환경 설정 파일 추가
 * .github/workflows/deploy.yml   
@@ -58,7 +60,7 @@ npm run deploy
 * ssh 키 생성 ( 윈도우의 경우 git bash 에서 해야함)
 {% highlight ruby %}
 > cd ~/.ssh
-> ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages-actions -N ""
+> ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages-actions[ssh 키 파일 이름, 변경 가능] -N ""
 {% endhighlight %}
 
 * 생성한 ssh 키 해당 저장소 셋팅의 deploy keys 추가(Allow write access 에 체크해야함!!)
@@ -67,7 +69,7 @@ key : ACTIONS_DEPLOY_KEY
 value : 
 (public key begins with 'ssh-rsa', 'ssh-ed25519', 'ecdsa-sha2-nistp256', 'ecdsa-sha2-nistp384', or 'ecdsa-sha2-nistp521')
 {% endhighlight %}
-* value -> cat ~/.ssh/gh-pages-actions.pub   = public key 보는 방법
+* value -> cat ~/.ssh/gh-pages-actions[ssh 키 파일 이름].pub   = public key 보는 방법
 
 * 해당 저장소 secrets 에서
 {% highlight ruby %}
@@ -78,7 +80,7 @@ b3BlbnNzaCasdfasdsdfasdfasdfasdff
 5UjwqW9LaA3PAAAAAAEasdfasdfasdfC
 -----END OPENSSH PRIVATE KEY-----
 {% endhighlight %}
-* value -> cat ~/.ssh/gh-pages-actions  = private key 보는 방법(--- 처음부터 --- 끝까지 다 넣어야함)
+* value -> cat ~/.ssh/gh-pages-actions[ssh 키 파일 이름]  = private key 보는 방법(--- 처음부터 --- 끝까지 다 넣어야함)
 
 
 [github]:https://github.com/
