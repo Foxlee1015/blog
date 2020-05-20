@@ -1,0 +1,20 @@
+---
+layout: post
+title: mysql - sql 문 정리
+date: 2020-05-20 00:00:00 +0300
+description: "자주 쓰는 sql 문 정리"
+tags: [mysql]
+img: mysql.png
+---
+
+## 회사 프로젝트 또는 개인 프로젝트에서 사용하기 위해 또는 궁금해서 찾아본 sql 문 정리
+
+1. 특정 숫자가 빠져있는지 체크하기 ( col_name = 상품번호)
+
+-   SELECT col_name+1 FROM db_name.table_name WHERE (col_name+1) NOT IN (SELECT col_name FROM db_name.table_name)
+
+2. 테이블 이름 변경
+
+-   rename table db_name.table_name to db_name.table_name
+
+## 기초 sql 문
