@@ -9,6 +9,8 @@ img: mysql.png
 
 ## 회사 프로젝트 또는 개인 프로젝트에서 사용하기 위해 또는 궁금해서 찾아본 sql 문 정리
 
+-   [dbeaver][dbeaver] dbeaver 에서 복수개의 sql 문 실행하기
+
 1. 특정 숫자가 빠져있는지 체크하기 ( col_name = 상품번호)
 
 -   SELECT col_name+1 FROM db_name.table_name WHERE (col_name+1) NOT IN (SELECT col_name FROM db_name.table_name)
@@ -17,4 +19,13 @@ img: mysql.png
 
 -   rename table db_name.table_name to db_name.table_name
 
+3. 특정 컬럼을 기준으로 그 컬럼의 데이터 들의 수 계산하기([ref1][ref1])
+
+-   SELECT col_name_1, COUNT(conl_name_2) AS cnt(result_col_name) FROM db_name.table_name GROUP BY col_name_1;
+
+*   예) 타입 컬럼에 a, b, c, d 의 값을 가질때 해당 테이블에서 a, b, c, d 의 각각의 수
+
 ## 기초 sql 문
+
+[dbeaver]: https://wakestand.tistory.com/272?category=768176
+[ref1]: https://extbrain.tistory.com/56
