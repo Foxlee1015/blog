@@ -10,7 +10,7 @@ tags: [github, cicd]
 ## Requirements 
 * 깃험 계정 [github][github]
 * npm
-
+* 깃헙 액션 [생활코딩][생활코딩] 유튜브
 
 
 ## 프로젝트 생성, 패키지 설치 및 package.json 수정
@@ -84,3 +84,4 @@ b3BlbnNzaCasdfasdsdfasdfasdfasdff
 
 
 [github]:https://github.com/
+[생활코딩]:https://www.youtube.com/watch?v=uBOdEEzjxzE
