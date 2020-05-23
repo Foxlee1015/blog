@@ -29,5 +29,10 @@ img: docker.png
 * -e 엘라스틱 싱글노드
 
 
+* 외부에서 접속하기 
+1. iptime 페이지에서 포트포워딩 설정
+2. toolbox 경우 가상머신 네트워크 설정에 포트포워딩 설정
+3. 포스트맨으로 get 192.168.99.100:9200 하면 엘라스틱 정보를 확인할 수 있음 
+
 [설치]:[https://sites.google.com/a/chromium.org/chromedriver/downloads]
 [docker hub]: https://hub.docker.com/
