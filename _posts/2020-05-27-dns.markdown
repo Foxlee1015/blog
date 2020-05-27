@@ -1,0 +1,14 @@
+---
+layout: post
+title: dns
+date: 2020-05-27 00:00:00 +0300
+description: "dns"
+tags: [web, dns]
+img:
+---
+
+## 개념
+
+-   [아마존 링크][아마존 링크]
+
+[아마존 링크]: https://aws.amazon.com/ko/route53/what-is-dns/
