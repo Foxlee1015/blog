@@ -3,7 +3,7 @@ layout: post
 title: Elasticsearch-analyzer
 date: 2020-05-30 12:00:00 +0300
 description: "Elasticsearch-analyzer"
-tags: [web, dns]
+tags: [elasticsearch]
 img: elasticsearch.png
 ---
 
@@ -15,8 +15,6 @@ img: elasticsearch.png
 
 2. stop words
     * a, the, at, of, on 등은 텍스트 분석시 필터처리되며, 스코어에 계산되지 않음
-
-
     * "I loved drinking bottles of whine on last year's vacation." -> ["i", "love", "drink", "botle", "of", "whine", "on", "last", "year", "vacat"]
     * 검색 시에도 동일하게 적용되기 때문에 검색시 찾을 수 있음
     * 예) {"query":"match":{"description" : "drinking"}} -> drink 을 찾음
@@ -87,6 +85,7 @@ PUT /english_example
     
 {% endhighlight %}
 
+## 분석기 예제
 
 {% highlight ruby %}
 > standard 분석기로 html 태그 분석 결과 확인(토큰화 안함)
