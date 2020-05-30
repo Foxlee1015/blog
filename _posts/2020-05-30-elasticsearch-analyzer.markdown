@@ -89,7 +89,7 @@ PUT /english_example
 
 {% highlight ruby %}
 > standard 분석기로 html 태그 분석 결과 확인(토큰화 안함)
-post /_analyze
+/post /_analyze
 {
     "analyzer" : "standard",
     "text": "<h1>this is a test text</h1>"
@@ -149,7 +149,7 @@ post /_analyze
     ]
 }
 > standdard 분석기 대신 char_filter 적용
-post _analyze
+/post _analyze
 {
     "char_filter": ["html_strip"],
     "text": "<h1>this is a test text</h1>"
