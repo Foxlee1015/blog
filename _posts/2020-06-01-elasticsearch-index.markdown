@@ -22,19 +22,19 @@ img: elasticsearch.png
 {% highlight ruby %}
 
 > 가능한 예
-> PUT /reviews/\_mapping
-> {
-> "properties": {
-> "author": {
-> "properties": {
-> "email": {
-> "type": "keyword",
-> "ignore_above": 256 // 256 글자 이상은 짜름
-> }
-> }
-> }
-> }
-> }
+PUT /reviews/\_mapping
+{
+    "properties": {
+        "author": {
+            "properties": {
+                "email": {
+                    "type": "keyword",
+                    "ignore_above": 256 // 256 글자 이상은 짜름
+                }
+            }
+        }
+    }
+}
 
 {% endhighlight %}
 
@@ -53,36 +53,36 @@ img: elasticsearch.png
 {% highlight ruby %}
 PUT /reviews_new
 {
-"mappings" : {
-"properties" : {
-"author" : {
-"properties" : {
-"email" : {
-"type" : "keyword",
-"ignore_above" : 256
-},
-"first_name" : {
-"type" : "text"
-},
-"last_name" : {
-"type" : "text"
-}
-}
-},
-"content" : {
-"type" : "text"
-},
-"created_at" : {
-"type" : "date"
-},
-"product_id" : {
-"type" : "keyword" // integer -> keyword 로 변경
-},
-"rating" : {
-"type" : "float"
-}
-}
-}
+    "mappings" : {
+        "properties" : {
+            "author" : {
+                "properties" : {
+                    "email" : {
+                        "type" : "keyword",
+                        "ignore_above" : 256
+                    },
+                    "first_name" : {
+                        "type" : "text"
+                    },
+                    "last_name" : {
+                        "type" : "text"
+                    }
+                }
+            },
+            "content" : {
+                "type" : "text"
+            },
+            "created_at" : {
+                "type" : "date"
+            },
+            "product_id" : {
+                "type" : "keyword" // integer -> keyword 로 변경
+            },
+            "rating" : {
+                "type" : "float"
+            }
+        }
+    }
 }
 
 {% endhighlight %}
@@ -92,12 +92,12 @@ PUT /reviews_new
 {% highlight ruby %}
 POST /\_reindex
 {
-"source": {
-"index": "reviews"
-},
-"dest": {
-"index": "reviews_new"
-}
+    "source": {
+        "index": "reviews"
+    },
+    "dest": {
+        "index": "reviews_new"
+    }
 }
 {% endhighlight %}
 
@@ -106,19 +106,20 @@ POST /\_reindex
 {% highlight ruby %}
 POST /\_reindex
 {
-"source": {
-"index": "reviews"
-},
-"dest": {
-"index": "reviews_new"
-},
-"script": {
-"source": """
-if (ctx.\_source.product_id != null) {
-ctx.\_source.product_id = ctx.\_source.product_id.toString();
-}
-"""
-}
+    "source": {
+        "index": "reviews"
+    },
+    "dest": {
+        "index": "reviews_new"
+    },
+    "script": {
+        "source": 
+        """
+            if (ctx.\_source.product_id != null) {
+                ctx.\_source.product_id = ctx.\_source.product_id.toString();
+            }
+        """
+    }
 }
 
 {% endhighlight %}
@@ -129,75 +130,75 @@ ctx.\_source.product_id = ctx.\_source.product_id.toString();
 
 POST /\_reindex
 {
-"source": {
-"index": "reviews",
-"query": {
-"match_all": { }
-}
-},
-"dest": {
-"index": "reviews_new"
-}
+    "source": {
+        "index": "reviews",
+        "query": {
+        "match_all": { }
+        }
+    },
+    "dest": {
+        "index": "reviews_new"
+    }
 }
 
 POST /\_reindex // 특정 조건에 충족하는 것만
 {
-"source": {
-"index": "reviews",
-"query": {
-"range": {
-"rating": {
-"gte": 4.0
-}
-}
-}
-},
-"dest": {
-"index": "reviews_new"
-}
+    "source": {
+        "index": "reviews",
+        "query": {
+            "range": {
+                "rating": {
+                    "gte": 4.0
+                }
+            }
+        }
+    },
+    "dest": {
+        "index": "reviews_new"
+    }
 }
 
 POST /\_reindex // 특정 필드만 가져오기
 {
-"source": {
-"index": "reviews",
-"\_source": ["content", "created_at", "rating"]
-},
-"dest": {
-"index": "reviews_new"
-}
+    "source": {
+        "index": "reviews",
+        "\_source": ["content", "created_at", "rating"]
+    },
+    "dest": {
+        "index": "reviews_new"
+    }
 }
 
 POST /\_reindex // 필드명 변경
 {
-"source": {
-"index": "reviews"
-},
-"dest": {
-"index": "reviews_new"
-},
-"script": {
-"source": """ # Rename "content" field to "comment"
-ctx.\_source.comment = ctx.\_source.remove("content");
-"""
-}
+    "source": {
+        "index": "reviews"
+    },
+    "dest": {
+        "index": "reviews_new"
+    },
+    "script": {
+        "source": """ # Rename "content" field to "comment"
+        ctx.\_source.comment = ctx.\_source.remove("content");
+        """
+    }
 }
 
 POST /\_reindex // 특정 조건에 만족하는 건 무시하기
 {
-"source": {
-"index": "reviews"
-},
-"dest": {
-"index": "reviews_new"
-},
-"script": {
-"source": """
-if (ctx.\_source.rating < 4.0) {
-ctx.op = "noop"; # Can also be set to "delete"
-}
-"""
-}
+    "source": {
+        "index": "reviews"
+    },
+    "dest": {
+        "index": "reviews_new"
+    },
+    "script": {
+        "source": """
+        if (ctx.\_source.rating < 4.0) {
+        ctx.op = "noop"; # Can also be set to "delete"
+        }
+        """
+    }
 }
 
 {% endhighlight %}
@@ -207,9 +208,9 @@ ctx.op = "noop"; # Can also be set to "delete"
 {% highlight ruby %}
 POST /reviews_new/\_delete_by_query
 {
-"query": {
-"match_all": {}
-}
+    "query": {
+        "match_all": {}
+    }
 }
 {% endhighlight %}
 
@@ -222,30 +223,30 @@ POST /reviews_new/\_delete_by_query
 
 PUT /reviews/\_mapping
 {
-"properties": {
-"comment": { // 대상 필드
-"type": "alias",
-"path": "content" // 새로운 맵핑
-}
-}
+    "properties": {
+        "comment": { // 대상 필드
+            "type": "alias",
+            "path": "content" // 새로운 맵핑
+        }
+    }
 }
 GET /reviews/\_search
 {
-"query": {
-"match": {
-"comment": "outstanding"
-}
-}
+    "query": {
+        "match": {
+            "comment": "outstanding"
+        }
+    }
 }
 
 / alias 추가한 후
 GET /reviews/\_search
 {
-"query": {
-"match": {
-"content": "outstanding"
-}
-}
+    "query": {
+        "match": {
+            "content": "outstanding"
+        }
+    }
 }
 {% endhighlight %}
 
@@ -256,27 +257,27 @@ GET /reviews/\_search
 {% highlight ruby %}
 PUT /multi_field_test
 {
-"mappings": {
-"properties": {
-"description": {
-"type": "text"
-},
-"ingredients": {
-"type": "text",
-"fields": {
-"keyword": {
-"type": "keyword"
-}
-}
-}
-}
-}
+    "mappings": {
+        "properties": {
+            "description": {
+                "type": "text"
+            },
+            "ingredients": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword"
+                    }
+                }
+            }
+        }
+    }
 }
 
 POST /multi_field_test/\_doc
 {
-"description": "To make this spaghetti carbonara, you first need to...",
-"ingredients": ["Spaghetti", "Bacon", "Eggs"] -> spaghetti, bacon, eggs 로 인덱싱됨
+    "description": "To make this spaghetti carbonara, you first need to...",
+    "ingredients": ["Spaghetti", "Bacon", "Eggs"] -> spaghetti, bacon, eggs 로 인덱싱됨
 }
 
 {% endhighlight %}
@@ -287,20 +288,20 @@ POST /multi_field_test/\_doc
 
 GET /multi_field_test/\_search
 {
-"query": {
-"match": {
-"ingredients": "Spaghetti" -> spaghetti 를 찾음
-}
-}
+    "query": {
+        "match": {
+            "ingredients": "Spaghetti" -> spaghetti 를 찾음
+        }
+    }
 }
 
 GET /multi_field_test/\_search
 {
-"query": {
-"term": {
-"ingredients.keyword": "Spaghetti" -> Spaghetti 를 찾음
-}
-}
+    "query": {
+        "term": {
+            "ingredients.keyword": "Spaghetti" -> Spaghetti 를 찾음
+        }
+    }
 }
 
 {% endhighlight %}
@@ -310,27 +311,27 @@ GET /multi_field_test/\_search
 {% highlight ruby %}
 PUT /\_template/access-logs
 {
-"index_patterns": ["access-logs-*"], // whildcard
-"settings": {
-"number_of_shards": 2,
-"index.mapping.coerce": false
-},
-"mappings": {
-"properties": {
-"@timestamp": {
-"type": "date"
-},
-"url.original": {
-"type": "keyword"
-},
-"http.request.referrer": {
-"type": "keyword"
-},
-"http.response.status_code": {
-"type": "long"
-}
-}
-}
+    "index_patterns": ["access-logs-*"], // whildcard
+    "settings": {
+        "number_of_shards": 2,
+        "index.mapping.coerce": false
+    },
+    "mappings": {
+        "properties": {
+            "@timestamp": {
+                "type": "date"
+            },
+            "url.original": {
+                "type": "keyword"
+            },
+            "http.request.referrer": {
+                "type": "keyword"
+            },
+            "http.response.status_code": {
+                "type": "long"
+            }
+        }
+    }
 }
 
 PUT /access-logs-2020-01-01 - index_patterns 에 맞춰서 인덱스 생성
@@ -357,9 +358,9 @@ DELETE /\_template/access-logs
 {% highlight ruby %}
 PUT /access-logs-2020-01-01
 {
-"settings": {
-"number_of_shards": 3, // 템플릿에는 2이나 3으로 셋팅해주면 오버라이딩된 값인 3으로 설정됨
-}
+    "settings": {
+    "number_of_shards": 3, // 템플릿에는 2이나 3으로 셋팅해주면 오버라이딩된 값인 3으로 설정됨
+    }
 }
 
 {% endhighlight %}
