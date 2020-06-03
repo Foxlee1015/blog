@@ -136,3 +136,36 @@ dummy.next = head # dummy : 0 1 2 3 4
     return dummy.next
 
 {% endhighlight %}
+
+{% highlight ruby %}
+
+# 19. Remove Nth Node From End of List
+
+-   Given linked list: 1->2->3->4->5, and n = 2.
+-   After removing the second node from the end, the linked list becomes 1->2->3->5.
+
+# Definition for singly-linked list.
+
+# class ListNode:
+
+# def **init**(self, val=0, next=None):
+
+# self.val = val
+
+# self.next = next
+
+class Solution:
+def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+
+fast = slow = head # head 안에서 n 만큼 fast 이동 후 slow 와 fast 같이 이동
+for \_ in range(n):
+fast = fast.next # n 만큼 먼저 이동
+if not fast: # n 만큼 이동 시
+return head.next
+while fast.next: # fast slow 같이 이동 후
+fast = fast.next
+slow = slow.next
+slow.next = slow.next.next # 해당 노드 제거
+return head
+
+{% endhighlight %}
