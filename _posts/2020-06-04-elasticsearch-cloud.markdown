@@ -71,9 +71,6 @@ green  open   .watches                        3vLVbQtpSyWcvOJZa_BiVw   1   1    
 {% endhighlight %}
 
 # 인덱스 생성 및 삭제
-{% endhighlight %}
-
-
 
 {% highlight ruby %}
 
@@ -213,8 +210,6 @@ DELETE /students/_doc/1
 }
 
 
-
-
 * 쿼리에 의한 특정 문서들만 삭제하기
 POST /students/_delete_by_query
 {
@@ -222,12 +217,12 @@ POST /students/_delete_by_query
     "match_all": { }
   }
 }
+
 {% endhighlight %}
 
+## 스크립트 쿼리
 
 {% highlight ruby %}
-
-# 스크립트 쿼리
 
 * 특정 필드에 1 더하기
 POST /students/_update/1
@@ -262,7 +257,7 @@ POST /students/_update/1
   }
 }
 
-위 리퀘스트를 계속 보내주면 
+* 위 리퀘스트를 계속 보내주면 
 {
   "_index" : "students",
   "_type" : "_doc",
@@ -278,7 +273,7 @@ POST /students/_update/1
   "_primary_term" : 1
 }
 
-age 가 50이 될때는
+* age 가 50이 될때는
 {
   "_index" : "students",
   "_type" : "_doc",
@@ -306,7 +301,6 @@ POST /students/_update/1
   }
 }
 
-
 POST /studnets/_update_by_query
 {
   "script": {
@@ -316,7 +310,6 @@ POST /studnets/_update_by_query
     "match_all": {}
   }
 }
-
 
 
 * 문서 업데이트(기존 문서 사라지고, 새로운 문서로 대체되므로, 필드 다시 업데이트 안한다면 필드 사라짐)
@@ -330,6 +323,7 @@ PUT /students/_doc/2   (POST 도 가능)
 
 
 ## Batch
+
 {% highlight ruby %}
 
 ```
