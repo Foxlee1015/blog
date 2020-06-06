@@ -71,6 +71,7 @@ green  open   .watches                        3vLVbQtpSyWcvOJZa_BiVw   1   1    
 {% endhighlight %}
 
 # 인덱스 생성 및 삭제
+{% endhighlight %}
 
 
 
@@ -221,6 +222,8 @@ POST /students/_delete_by_query
     "match_all": { }
   }
 }
+{% endhighlight %}
+
 
 {% highlight ruby %}
 
