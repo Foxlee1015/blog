@@ -72,8 +72,9 @@ green  open   .watches                        3vLVbQtpSyWcvOJZa_BiVw   1   1    
 
 # 인덱스 생성 및 삭제
 
-{% endhighlight %}
 
+
+{% highlight ruby %}
 
 * 인덱스 생성하기 + 셋팅
 PUT /products
@@ -367,27 +368,6 @@ GET /products/_search
 
 {% endhighlight %}
 
-
-
-{% highlight ruby %}
-
-
-{% endhighlight %}
-
-{% highlight ruby %}
-
-
-{% endhighlight %}
-
-{% highlight ruby %}
-
-
-{% endhighlight %}
-
-{% highlight ruby %}
-
-
-{% endhighlight %}
 
 
 [Elastic-cloud]: https://www.elastic.co/kr/cloud/
