@@ -104,15 +104,3 @@ class Solution:
 
 
 {% endhighlight %}
-
-{% highlight ruby %}
-
-
-
-{% endhighlight %}
-
-{% highlight ruby %}
-
-
-
-{% endhighlight %}
