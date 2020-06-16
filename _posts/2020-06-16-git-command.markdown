@@ -35,4 +35,16 @@ img: git.png
 
 ## 변경 확인
 * git diff  / 변경된 파일들 , git diff filename 특정 파일의 변경만
-* git diff --staged 수정 전후 변경된 부분 보여줌
+* git diff --staged
+
+## git show commitId
+* 해당 커밋 보여줌
+
+## branch
+* git branch : 현재 저장소에 있는 모든 로컬 브랜치들을 보여줌
+* git branch branch_name : branch_name 으로 브랜치 만듬
+* git branch -d branch_name : branch_name 의 브랜치 삭제함
+* git checkout branch_name : branch_name 로 브랜치 변경
+* git checkout -b branch_name : branch_name 을 생성하고 바로 브랜치 변경 
+* git merge branch_name : 현재 브랜치에 branch name을 병합함
+* 
