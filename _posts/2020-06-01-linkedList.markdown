@@ -114,7 +114,5 @@ def middleNode(self, head):
             slow = slow.next                 2          3                    4
             fast = fast.next.next            3          5                    null
         return slow                                              3           4
-
-
-
+        
 {% endhighlight %}
