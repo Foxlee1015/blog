@@ -3,17 +3,15 @@ layout: post
 title: git-command
 date: 2020-06-16 01:00:00 +0300
 description: "git-command"
-tags: [git, ]
+tags: [git]
 img: git.png
 ---
 
 ## 자주 쓰는 git 명령어 정리
 
-* 수정된 부분 폐기하기 = git checkout -f
-* untracked 파일 제거하기 = git clean -fd
+* [GIT DOC][GIT DOC]
 
 ## 커밋 메시지
-
 * push 전 가장 최근 커밋 메시지 수정하기 
   1. git commit --amend -m "33"
 * push 는 했지만 가장 최근 커밋 수정 
@@ -22,7 +20,6 @@ img: git.png
 
 ## 커밋한 파일 staging 과 메시지 같이 입력
 * git commit -am "[docs] messages"
-
 
 ## push된 커밋 정보(메시지,작성자)변경
 1. 잘못된 이름의 커밋 id(hash) 확인
@@ -47,4 +44,10 @@ img: git.png
 * git checkout branch_name : branch_name 로 브랜치 변경
 * git checkout -b branch_name : branch_name 을 생성하고 바로 브랜치 변경 
 * git merge branch_name : 현재 브랜치에 branch name을 병합함
-* 
+
+## 삭제, 폐기하기
+* 수정된 부분 폐기하기 = git checkout -f
+* untracked 파일 제거하기 = git clean -fd
+
+
+[GIT DOC]:https://git-scm.com/book/ko/v2
