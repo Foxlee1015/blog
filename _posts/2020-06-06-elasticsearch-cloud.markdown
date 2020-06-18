@@ -172,7 +172,7 @@ GET /students/_doc/1
 }
 
 * 특정 문서 id의 데이터 수정하기 및 필드 추가하기
-* POST /students/_update/1        * _type 에 _Update
+* POST /students/_update/1        * _type 에 _Update   // /students/items/1/_update  
 {
   "doc": {                         * 문서 doc
     "name": "min kook"

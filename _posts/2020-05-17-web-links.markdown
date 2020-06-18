@@ -13,7 +13,14 @@ img: web-links.jpg
 2. Web Photoshop
     * [freephototool][freephototool]
 
+3. 공부 사이트
+    * [잔재미코딩][잔재미코딩]
+    * [점프 투 파이썬][점프 투 파이썬]
+    * [점프 투 장고][점프 투 장고]
 
 
 [unsplash]: https://unsplash.com/
 [freephototool]:https://www.freephototool.com/
+[잔재미코딩]: https://www.fun-coding.org/index.html
+[점프 투 파이썬]: https://wikidocs.net/book/1
+[점프 투 장고]: https://wikidocs.net/book/4223

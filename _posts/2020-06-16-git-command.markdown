@@ -46,7 +46,9 @@ img: git.png
 * git merge branch_name : 현재 브랜치에 branch name을 병합함
 
 ## 삭제, 폐기하기
-* 수정된 부분 폐기하기 = git checkout -f
+* 수정된 부분 전체 되돌리기(원래 상태로) = git checkout master 
+* 수정된 파일 폐기하기 = git checkout -f  / git checkout main.py
+* add 한 후에는 git reset HEAD main.py -> git checkout main.py
 * untracked 파일 제거하기 = git clean -fd
 
 

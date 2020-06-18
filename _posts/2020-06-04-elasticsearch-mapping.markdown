@@ -24,65 +24,75 @@ img: elasticsearch.png
 버전 5.\*
 PUT http://localhost:9200/shakespeare
 {
-"mappings" : {
-"_default_" : {
-"properties" : {
-"speaker" : {"type": "string", "index" : "not_analyzed" },
-"play_name" : {"type": "string", "index" : "not_analyzed" },
-"line_id" : { "type" : "integer" },
-"speech_number" : { "type" : "integer" }
-}
-}
-}
+    "mappings": {
+        "_default_": {
+            "properties": {
+                "speaker": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "play_name": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "line_id": {
+                    "type": "integer"
+                },
+                "speech_number": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
 }
 
 버전 7.\*
 PUT http://localhost:9200/shakespeare/
 
 {
-"mappings": {
-"properties": {
-"speaker": {
-"type": "text", # 버전 7에서는 string 으로 하니 에러 떠서 text 로 변경
-"index": "false" # 분석되지 않을 문자열. 여러 단어라도 하나의 단위로 처리
-},
-"play_name": {
-"type": "text",
-"index": "false"
-},
-"line_id": {
-"type": "integer"
-},
-"speech_number": {
-"type": "integer"
-}
-}
-}
+    "mappings": {
+        "properties": {
+            "speaker": {
+                "type": "text",  // 버전 7에서는 string 으로 하니 에러 떠서 text 로 변경
+                "index": "false"  // 분석되지 않을 문자열. 여러 단어라도 하나의 단위로 처리
+            },
+            "play_name": {
+                "type": "text",
+                "index": "false"
+            },
+            "line_id": {
+                "type": "integer"
+            },
+            "speech_number": {
+                "type": "integer"
+            }
+        }
+    }
 }
 
 get /http://localhost:9200/shakespeare/_mapping 매핑 결과
 
 {
-"shakespeare": {
-"mappings": {
-"properties": {
-"line_id": {
-"type": "integer"
-},
-"play_name": {
-"type": "text",
-"index": false
-},
-"speaker": {
-"type": "text",
-"index": false
-},
-"speech_number": {
-"type": "integer"
-}
-}
-}
-}
+    "shakespeare": {
+        "mappings": {
+            "properties": {
+                "line_id": {
+                    "type": "integer"
+                },
+                "play_name": {
+                    "type": "text",
+                    "index": false
+                },
+                "speaker": {
+                    "type": "text",
+                    "index": false
+                },
+                "speech_number": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
 }
 
 > 데이터 로드 ( git bash)
@@ -94,39 +104,37 @@ get /http://localhost:9200/shakespeare/_mapping 매핑 결과
 {% highlight ruby %}
 
 1. 매핑 설정
-   PUT http://localhost:9200/logstash-2015.05.18 logstash-2015.05.19 logstash-2015.05.20
-   {
-   "mappings": {
-   "properties": {
-   "geo": {
-   "properties": {
-   "coordinates": {
-   "type": "geo_point"
-   }
-   }
-   }
-   }
-   }
-   }
+PUT http://localhost:9200/logstash-2015.05.18 logstash-2015.05.19 logstash-2015.05.20
+{
+    "mappings": {
+        "properties": {
+            "geo": {
+                "properties": {
+                    "coordinates": {
+                        "type": "geo_point"
+                    }
+                }
+            }
+        }
+    }
+}
 
 2. 매핑 결과
-
 GET http://localhost:9200/logstash-2015.05.18/_mapping logstash-2015.05.19 logstash-2015.05.20
-
 {
-"logstash-2015.05.18": { // logstash-2015.05.19, logstash-2015.05.20
-"mappings": {
-"properties": {
-"geo": {
-"properties": {
-"coordinates": {
-"type": "geo_point"
-}
-}
-}
-}
-}
-}
+    "logstash-2015.05.18": { // logstash-2015.05.19, logstash-2015.05.20
+        "mappings": {
+            "properties": {
+                "geo": {
+                    "properties": {
+                        "coordinates": {
+                            "type": "geo_point"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 3. 데이터 올리기
