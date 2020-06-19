@@ -133,7 +133,7 @@ POST http://localhost:9200/news/_doc/_search
         "weekly_news": {
             "date_range": {
                 "field": "published_at",
-                "format": "yyyy-MM-dd",      // foramt 없으면 결과에 기존 데이터 값에 맞춰서 동일하게 보여줌
+                "format": "yyyy-MM-dd",   // || "epoch_millis" ||   // foramt 없으면 결과에 기존 데이터 값에 맞춰서 동일하게 보여줌
                 "keyed": true,              // default = false => 객체(key 데이터를 key 값으로 가지지 않고, 배열 안에 key 값을 가짐
                 "ranges": [
                     {
