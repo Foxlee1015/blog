@@ -206,7 +206,7 @@ POST http://localhost:9200/news/_doc/_search
 
 * 사이트별 카운트
 {
-  "size: 0,
+  "size": 0,
   "aggs": {
     "sites": {
       "terms": {
@@ -262,6 +262,32 @@ POST http://localhost:9200/news/_doc/_search
         }
     }
 }
+
+** 적용
+{
+    "size": 0,
+    "aggs": {
+        "sites": {
+            "terms": {
+                "field": "site",
+                "min_doc_count": 20,
+                "order": {
+                    "_key": "asc"
+                }
+            },
+            "aggs": {
+                "weekly_news": {
+                    "histogram": {
+                        "field": "crawled_at",
+                        "interval": 5000,
+                        "format": "epoch_millis"
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 {% endhighlight %}
 
