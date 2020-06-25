@@ -254,7 +254,7 @@ GET /product/_search
 
 {% endhighlight %}
 
-## 필드 존재 여부, 복수개의 id 정보로 검색, term 검색
+### 필드 존재 여부, 복수개의 id 정보로 검색, term 검색
 
 {% highlight ruby %}
 
@@ -268,7 +268,7 @@ GET /news/_search
   }
 }
 
-# or query
+### or query
 GET /news/_search
 {
   "from": 2,
@@ -280,4 +280,48 @@ GET /news/_search
 }
 
 
+{% endhighlight %}
+
+### 필드 삭제하기 
+
+{% highlight ruby %}
+POST http://host:port/index/_update_by_query?conflicts=proceed
+
+{
+  "script": "ctx._source.remove('filed_name')",
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "exists": {
+            "field": "filed_name"
+          }
+        }
+      ]
+    }
+  }
+}
+{% endhighlight %}
+
+### Random_score
+
+{% highlight ruby %}
+
+{
+  "query": {
+    "function_score": {
+      "query": {
+        "bool": {
+          "must_not": [
+            {
+              "exists": {
+                "field": "field_name"
+              }
+            }
+          ]
+        }
+      },
+    "random_score": {}
+    }  }
+}
 {% endhighlight %}
