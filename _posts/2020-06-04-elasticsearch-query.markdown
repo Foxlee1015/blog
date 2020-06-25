@@ -282,6 +282,9 @@ GET /news/_search
 
 {% endhighlight %}
 
+
+* [Script][Script] 문서 참고
+
 ### 필드 삭제하기 
 
 {% highlight ruby %}
@@ -302,6 +305,28 @@ POST http://host:port/index/_update_by_query?conflicts=proceed
   }
 }
 {% endhighlight %}
+
+### 필드 추가하기 
+
+{% highlight ruby %}
+POST http://host:port/index/_update_by_query?conflicts=proceed
+
+{
+  "script": "ctx._source.fieldName2='field_value'",  // ='string' or =1
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "exists": {
+            "field": "fieldName2"
+          }
+        }
+      ]
+    }
+  }
+}
+{% endhighlight %}
+
 
 ### Random_score
 
@@ -325,3 +350,7 @@ POST http://host:port/index/_update_by_query?conflicts=proceed
     }  }
 }
 {% endhighlight %}
+
+
+
+[Script]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html 
