@@ -283,9 +283,9 @@ GET /news/_search
 {% endhighlight %}
 
 
-* [Script][Script] 문서 참고
 
 ### 필드 삭제하기 
+* [Script][Script] 문서 참고
 
 {% highlight ruby %}
 POST http://host:port/index/_update_by_query?conflicts=proceed
@@ -327,9 +327,9 @@ POST http://host:port/index/_update_by_query?conflicts=proceed
 }
 {% endhighlight %}
 
-
 ### Random_score
-
+* [참고][참고]
+    
 {% highlight ruby %}
 
 {
@@ -354,3 +354,4 @@ POST http://host:port/index/_update_by_query?conflicts=proceed
 
 
 [Script]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update.html 
+[참고]:http://richardhallett.com/posts/random-sampling-elasticsearch/
