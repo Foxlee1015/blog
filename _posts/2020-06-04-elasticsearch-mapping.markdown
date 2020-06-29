@@ -40,7 +40,10 @@ PUT http://localhost:9200/shakespeare
                 },
                 "speech_number": {
                     "type": "integer"
-                }
+                },
+                "published_at": {
+                    "type": "date",
+                    "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
             }
         }
     }
