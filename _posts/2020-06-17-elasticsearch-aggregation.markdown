@@ -361,3 +361,70 @@ img: elasticsearch.png
 }
 
 {% endhighlight %}
+
+
+
+## aggs 의 버킷들 안에서 정렬하기
+
+{% highlight ruby %}
+
+* hits 를 정렬하기
+{
+  "size": 0,
+  "aggs": {
+    "sitekey_terms": {
+      "terms": {
+        "field": "site_key.keyword", // status의 데이터를 기준으로 구분됨
+        "size": 20, // default size = 10
+        "min_doc_count": 0,
+        "order": {
+          "_key": "asc" // 집계의 buckets 들의 이름 순서로 정렬
+        }
+      },
+      "aggs": {
+        "top_docs_hits": {
+          "top_hits": {
+            "sort": [
+              {
+                "publish_date": {
+                  "order": "desc"
+                }
+              }
+            ],
+            "_source": {
+              "includes": 
+                "publish_date"  // ["publish_date", "keyword"]
+            },
+            "size": 1
+          }
+        }
+      }
+    }
+  }
+}
+
+* 각각의 버킷 안에서 다시 집계하기
+{
+  "size": 0,
+  "aggs": {
+    "sitekey_terms": {
+      "terms": {
+        "field": "site_key.keyword", // status의 데이터를 기준으로 구분됨
+        "size": 20, // default size = 10
+        "min_doc_count": 0,
+        "order": {
+          "_key": "asc" // 집계의 buckets 들의 이름 순서로 정렬
+        }
+      },
+      "aggs": {
+        "newest_date": {
+          "max" : {
+                "field" : "publish_date"
+            }
+        }
+      }
+    }
+  }
+}
+
+{% endhighlight %}
