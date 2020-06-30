@@ -7,7 +7,6 @@ tags: [Chrome, Vimium]
 img: vim.png
 ---
 
-
 ## Vim in Chrome
 
 ### Navigating the page
@@ -66,8 +65,6 @@ img: vim.png
 ### Miscellaneous
 * ?		Show help
 
-
-
 #### 검색 패턴
 1. t(Create a new tab, does not work on google main page)
 2. gi(foucus the first text input) -> type a keyword
@@ -76,4 +73,4 @@ img: vim.png
 5. f(Open a link in the current tab) -> i.e) go to next page or keep the tab
 6. J(left tab)/K(right tab) / H(go back in history),L(go forward)
 7. gg(top of the page)/G(bottome of page)
-8. x(close current tab)
+8. x(close current tab) // X (reopen the tab just closed)
