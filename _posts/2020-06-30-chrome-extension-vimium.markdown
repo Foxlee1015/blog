@@ -66,8 +66,8 @@ img: vim.png
 * ?		Show help
 
 #### 검색 패턴
-1. t(Create a new tab, does not work on google main page)
-2. gi(foucus the first text input) -> type a keyword
+1. t(Create a new tab)
+2. gi(foucus the first text input, , does not work on google main page) -> type a keyword
 3. j(down)/k(up)/u(half page up)/d(hal page down)/h(left)/l(right) -> move to interesting articles(links)
 4. F(Open a link in a new tab) -> i.e) multiple articles
 5. f(Open a link in the current tab) -> i.e) go to next page or keep the tab
